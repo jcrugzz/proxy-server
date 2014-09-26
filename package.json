@@ -1,0 +1,32 @@
+{
+  "name": "proxy-server",
+  "version": "1.0.0",
+  "description": "Simple http proxy server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jcrugzz/proxy-server.git"
+  },
+  "keywords": [
+    "proxy",
+    "http",
+    "node-http-proxy",
+    "server",
+    "create-servers"
+  ],
+  "author": "Jarrett Cruger <jcrugzz@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcrugzz/proxy-server/issues"
+  },
+  "homepage": "https://github.com/jcrugzz/proxy-server",
+  "dependencies": {
+    "create-servers": "~1.3.0",
+    "forwarded-for": "~0.1.1",
+    "http-proxy": "~1.4.3",
+    "minimist": "~1.1.0"
+  }
+}

@@ -1,0 +1,12 @@
+Usage: proxy-server [options]
+
+Options:
+  -c, --config <path>   Path to config file
+  -t, --target <url>    Full url to proxy to
+  -p, --port <port>     Port to listen on (http)
+  -s, --ssl <port>      Port to listen on (https)
+  -r, --root <path>     Root path for SSL files
+  -k, --key <name>      Filename for ssl key
+  -e, --cert <name>     Filename for cert file
+  -a, --ca   <name>     Filename for ca file
+  -h, --help            This!
