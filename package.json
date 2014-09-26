@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Simple http proxy server",
   "main": "index.js",
+  "bin": {
+    "proxy-server": "./bin/cmd.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
