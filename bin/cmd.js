@@ -15,9 +15,10 @@ var argv = minimist(process.argv.slice(2), {
     root: 'r',
     key: 'k',
     cert: 'e',
-    ca: 'a'
+    ca: 'a',
+    ws: 'w'
   },
-  boolean: [ 'help' ],
+  boolean: [ 'help', 'ws' ],
   string: [ 'config', 'target', 'root', 'key', 'cert', 'ca' ]
 });
 
@@ -30,6 +31,7 @@ if (argv.help) {
 var config = argv.config? require(path.resolve(process.cwd(), argv.config)) : {};
 
 config.target = argv.target || config.target;
+config.ws = argv.ws || config.ws || false;
 config.http = argv.http || config.http;
 config.https = argv.ssl && argv.root && argv.key && argv.cert && argv.ca
   ? { port: argv.ssl, root: argv.root, key: argv.key, cert: argv.cert, ca: argv.ca }

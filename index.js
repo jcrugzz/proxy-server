@@ -27,7 +27,9 @@ function Server (options) {
   this.proxy.on('error', this.onError.bind(this));
   this.proxy.on('start', this.emit.bind(this, 'start'));
   this.proxy.on('end', this.emit.bind(this, 'end'));
-  console.dir(options);
+
+  this.options = options;
+
   // Create all the servers!
   createServers({
     http: options.http,
@@ -72,7 +74,7 @@ Server.prototype.onListen = function (errs, servers) {
   this.servers = servers;
 
   Object.keys(servers).forEach(function (key) {
-    if (servers[key]) servers[key].on('upgrade', this.handleUpgrade.bind(this));
+    if (servers[key] && this.options.ws) servers[key].on('upgrade', this.handleUpgrade.bind(this));
   }, this);
 
   this.emit('listening', servers);
