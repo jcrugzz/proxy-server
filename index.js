@@ -44,6 +44,10 @@ Server.prototype.handler = function (req, res) {
   this.proxy.web(req, res);
 };
 
+Server.prototype.handleUpgrade = function (req, socket, head) {
+  this.proxy.ws(req, socket, head);
+};
+
 Server.prototype.onError = function (err, req, res) {
   var address = forwarded(req, req.headers),
       json;
@@ -66,6 +70,11 @@ Server.prototype.onListen = function (errs, servers) {
     }, this);
   }
   this.servers = servers;
+
+  Object.keys(servers).forEach(function (key) {
+    if (servers[key]) servers[key].on('upgrade', this.handleUpgrade.bind(this));
+  }, this);
+
   this.emit('listening', servers);
 };
 
