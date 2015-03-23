@@ -3,6 +3,7 @@ Usage: proxy-server [options]
 Options:
   -c, --config <path>   Path to config file
   -o, --change-origin   Specifys that we auto-set the host header to targets host
+  -r, --rewrite-host    Rewrites the location hostname on (301/302/307/308) redirects
   -t, --target <url>    Full url to proxy to
   -p, --port <port>     Port to listen on (http)
   -s, --ssl <port>      Port to listen on (https)
