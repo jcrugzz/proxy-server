@@ -13,6 +13,7 @@ function Server (options) {
   options = options || {};
   options.http = options.http || 80;
   options.https = options.https || null;
+  options.changeOrigin = options.changeOrigin || false;
 
   if(!options.target)
     throw new Error('Must specify target to proxy');
@@ -20,6 +21,7 @@ function Server (options) {
   this.target = options.target;
   // TODO: This should be better configurable
   this.proxy = new HttpProxy({
+    changeOrigin: options.changeOrigin,
     secure: options.secure || false,
     target: this.target
   });

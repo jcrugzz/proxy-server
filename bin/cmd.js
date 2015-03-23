@@ -9,6 +9,7 @@ var argv = minimist(process.argv.slice(2), {
   alias: {
     help: 'h',
     config: 'c',
+    'change-origin': 'o',
     target: 't',
     port: 'p',
     ssl: 's',
@@ -18,7 +19,7 @@ var argv = minimist(process.argv.slice(2), {
     ca: 'a',
     ws: 'w'
   },
-  boolean: [ 'help', 'ws' ],
+  boolean: [ 'help', 'ws', 'change-origin'],
   string: [ 'config', 'target', 'root', 'key', 'cert', 'ca' ]
 });
 
@@ -28,11 +29,12 @@ if (argv.help) {
     .on('close', function () { process.exit(1) })
 }
 
-var config = argv.config? require(path.resolve(process.cwd(), argv.config)) : {};
+var config = argv.config ? require(path.resolve(process.cwd(), argv.config)) : {};
 
 config.target = argv.target || config.target;
 config.ws = argv.ws || config.ws || false;
 config.http = argv.http || config.http;
+config.changeOrigin = argv['change-origin'] || config.changeOrigin;
 config.https = argv.ssl && argv.root && argv.key && argv.cert && argv.ca
   ? { port: argv.ssl, root: argv.root, key: argv.key, cert: argv.cert, ca: argv.ca }
   : config.https;
