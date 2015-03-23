@@ -10,6 +10,7 @@ var argv = minimist(process.argv.slice(2), {
     help: 'h',
     config: 'c',
     'change-origin': 'o',
+    'rewrite-host': 'r',
     target: 't',
     port: 'p',
     ssl: 's',
@@ -20,7 +21,7 @@ var argv = minimist(process.argv.slice(2), {
     ws: 'w'
   },
   boolean: [ 'help', 'ws', 'change-origin'],
-  string: [ 'config', 'target', 'root', 'key', 'cert', 'ca' ]
+  string: [ 'config', 'target', 'root', 'key', 'cert', 'ca', 'rewrite-host' ]
 });
 
 if (argv.help) {
@@ -35,6 +36,7 @@ config.target = argv.target || config.target;
 config.ws = argv.ws || config.ws || false;
 config.http = argv.http || config.http;
 config.changeOrigin = argv['change-origin'] || config.changeOrigin;
+config.rewriteHost = argv['rewrite-host'] || config.rewriteHost;
 config.https = argv.ssl && argv.root && argv.key && argv.cert && argv.ca
   ? { port: argv.ssl, root: argv.root, key: argv.key, cert: argv.cert, ca: argv.ca }
   : config.https;

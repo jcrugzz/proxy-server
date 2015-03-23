@@ -14,6 +14,11 @@ function Server (options) {
   options.http = options.http || 80;
   options.https = options.https || null;
   options.changeOrigin = options.changeOrigin || false;
+  if (options.rewriteHost) {
+    options.rewriteHost = options.rewriteHost + ':' + options.http;
+  } else {
+    options.rewriteHost = false;
+  }
 
   if(!options.target)
     throw new Error('Must specify target to proxy');
@@ -22,6 +27,7 @@ function Server (options) {
   // TODO: This should be better configurable
   this.proxy = new HttpProxy({
     changeOrigin: options.changeOrigin,
+    hostRewrite: options.rewriteHost,
     secure: options.secure || false,
     target: this.target
   });
